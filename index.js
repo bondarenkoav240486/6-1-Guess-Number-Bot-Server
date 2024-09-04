@@ -6,11 +6,10 @@ const cors = require('cors');
 const app = express();
 
 // Використання змінної середовища для порту, або значення за замовчуванням 3001
-const port = process.env.PORT || 7061;
+const port = process.env.PORT || 7000;
 
 const TelegramBot = require('node-telegram-bot-api');
 
-// const token = '6439612094:AAFZ6F0GEeGTcj2wIgP3EfiE2i34wJH0jY0';
 // Використання змінної середовища для токену Telegram-бота
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -60,7 +59,6 @@ app.post('/guess', (req, res) => {
     } else if (guess < targetNumber) {
         res.status(200).json({ result: 'greater' });
     } else {
-        console.log(`Target Number (Server): ${targetNumber}`); // Виводимо число в консоль Node.js
         targetNumber = null; // Скидаємо гру, якщо число вгадано
         res.status(200).json({ result: 'correct' });
     }
